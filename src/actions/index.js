@@ -1,5 +1,5 @@
-/* eslint-disable */
 import axios from 'axios';
+import history from '../history';
 import * as actionTypes from './types';
 
 const BASE_URL = `${SERVER_URL}/api`;
@@ -10,6 +10,7 @@ export function signIn(email, password) {
       .post(`${BASE_URL}/signin`, { email, password })
       .then((response) => {
         dispatch({ type: actionTypes.SIGNED_IN, staff: response.data });
+        history.push('/users');
       })
       .catch(() => {});
   };
