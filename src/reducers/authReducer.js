@@ -7,7 +7,11 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case SIGNED_IN: {
-      return { ...state, auth: action.auth };
+      return {
+        ...state,
+        token: action.auth.token,
+        loggedInUser: action.auth.user,
+      };
     }
 
     default:

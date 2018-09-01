@@ -19,7 +19,9 @@ class UserContainer extends Component {
         <div styleName="title">Usuários</div>
 
         <table styleName="table">
-          {userList.map(user => <tr key={user._id}><td>{user.name}</td></tr>)}
+          <tbody>
+            {userList.map(user => <tr key={user._id}><td>{user.name}</td></tr>)}
+          </tbody>
         </table>
       </div>
     );

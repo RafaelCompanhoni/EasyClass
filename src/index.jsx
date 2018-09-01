@@ -8,6 +8,8 @@ import logger from 'redux-logger';
 import 'babel-polyfill';
 import reducers from './reducers';
 import history from './history';
+import Authentication from './components/shared/Authentication';
+import { SIGNED_IN } from './actions/types';
 
 import LoginContainer from './components/Login/LoginContainer';
 import Dashboard from './components/shared/Dashboard';
@@ -15,6 +17,13 @@ import UserContainer from './components/User/UserContainer';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk, logger)(createStore);
 const store = createStoreWithMiddleware(reducers);
+
+// recovers auth data from local storage if page is reloaded
+const token = localStorage.getItem('token');
+const user = localStorage.getItem('loggedInUser');
+if (token && user) {
+  store.dispatch({ type: SIGNED_IN, auth: { token, user } });
+}
 
 ReactDOM.render(
   <Provider store={store}>
@@ -24,8 +33,8 @@ ReactDOM.render(
         <Dashboard>
           <Route component={() => (
             <div>
-              <Route path="/users" component={UserContainer} />
-              <Route path="/other" component={LoginContainer} />
+              <Route path="/users" component={Authentication(UserContainer)} />
+              <Route path="/other" component={Authentication(UserContainer)} />
             </div>
           )}
           />

@@ -10,6 +10,10 @@ export function signIn(email, password) {
       .post(`${BASE_URL}/signin`, { email, password })
       .then((response) => {
         dispatch({ type: actionTypes.SIGNED_IN, auth: response.data });
+
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('loggedInUser', response.data.user);
+
         history.push('/users');
       })
       .catch(() => {});
