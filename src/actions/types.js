@@ -1,2 +1,2 @@
 export const SIGNED_IN = 'SIGNED_IN';
-export const STAFF_LIST_FETCHED = 'STAFF_LIST_FETCHED';
+export const USER_LIST_FETCHED = 'USER_LIST_FETCHED';

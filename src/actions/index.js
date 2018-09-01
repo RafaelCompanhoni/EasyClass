@@ -9,19 +9,19 @@ export function signIn(email, password) {
     axios
       .post(`${BASE_URL}/signin`, { email, password })
       .then((response) => {
-        dispatch({ type: actionTypes.SIGNED_IN, staff: response.data });
+        dispatch({ type: actionTypes.SIGNED_IN, auth: response.data });
         history.push('/users');
       })
       .catch(() => {});
   };
 }
 
-export function fetchStaffList() {
+export function fetchUserList() {
   return (dispatch) => {
     axios
       .get(`${BASE_URL}/user`)
       .then((response) => {
-        dispatch({ type: actionTypes.STAFF_LIST_FETCHED, staff: response.data });
+        dispatch({ type: actionTypes.USER_LIST_FETCHED, users: response.data });
       })
       .catch(() => {});
   };

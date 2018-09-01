@@ -36,7 +36,7 @@ class LoginContainer extends Component {
 
   render() {
     return (
-      <section styleName="hero is-fullheight">
+      <section styleName="hero is-success is-fullheight">
         <div styleName="hero-body">
           <div styleName="container has-text-centered">
             <div styleName="column is-4 is-offset-4">
@@ -94,7 +94,6 @@ LoginContainer.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => bindActionCreators({ signIn }, dispatch);
-const mapStateToProps = ({ staffData }) => ({ staffList: staffData.staff });
 
 export const styledComponent = CSSModules(LoginContainer, styles, { allowMultiple: true });
-export default connect(mapStateToProps, mapDispatchToProps)(styledComponent);
+export default connect(null, mapDispatchToProps)(styledComponent);

@@ -1,15 +1,15 @@
-import { STAFF_LIST_FETCHED } from '../actions/types';
+import { USER_LIST_FETCHED } from '../actions/types';
 
 const initialState = {
-  staff: [],
+  users: [],
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case STAFF_LIST_FETCHED: {
+    case USER_LIST_FETCHED: {
       return {
         ...state,
-        staff: action.staff,
+        users: action.users,
       };
     }
 
