@@ -28,10 +28,19 @@ export function signIn(email, password) {
   };
 }
 
+export function signOut() {
+  return async (dispatch) => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('loggedInUser');
+
+    dispatch({ type: actionTypes.SIGNED_OUT });
+  };
+}
+
 export function fetchUserList() {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${BASE_URL}/class/5b75a0f97cd87f26e4ad40c3`);
+      const response = await axios.get(`${BASE_URL}/user`);
       dispatch({ type: actionTypes.USER_LIST_FETCHED, users: response.data });
     } catch (error) {
       dispatch({ type: actionTypes.USER_LIST_FETCHED_ERROR, fetchedUserErrors: mapErrorsFromResponse(error) });

@@ -1,5 +1,6 @@
 export const SIGNED_IN = 'SIGNED_IN';
 export const SIGNED_IN_ERROR = 'SIGNED_IN_ERROR';
+export const SIGNED_OUT = 'SIGNED_OUT';
 
 export const USER_LIST_FETCHED = 'USER_LIST_FETCHED';
 export const USER_LIST_FETCHED_ERROR = 'USER_LIST_FETCHED_ERROR';
