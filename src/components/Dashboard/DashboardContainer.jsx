@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import CSSModules from 'react-css-modules';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import styles from '../../../styles/custom/shared/dashboard.sass';
-import { signOut } from '../../actions/index';
+import styles from '../../../styles/custom/Dashboard/dashboard-container.sass';
+import { signOut } from '../../actions';
 
-class Dashboard extends Component {
+class DashboardContainer extends Component {
   constructor(props) {
     super(props);
 
@@ -23,7 +23,7 @@ class Dashboard extends Component {
     const { children } = this.props;
 
     return (
-      <React.Fragment>
+      <Fragment>
         <nav styleName="navbar is-light" role="navigation" aria-label="main navigation">
           <div styleName="navbar-brand">
             <a styleName="navbar-item" href="https://bulma.io">
@@ -59,7 +59,7 @@ class Dashboard extends Component {
         <div styleName="section">
           <div styleName="columns">
             <aside styleName="column is-2">
-              <nav styleName="menu">
+              <nav styleName="menu has-background-light">
                 <p styleName="menu-label">Geral</p>
                 <ul styleName="menu-list">
                   <li><a styleName="is-active">Usuários</a></li>
@@ -76,16 +76,16 @@ class Dashboard extends Component {
             </main>
           </div>
         </div>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }
 
-Dashboard.propTypes = {
+DashboardContainer.propTypes = {
   children: PropTypes.node.isRequired,
   signOut: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => bindActionCreators({ signOut }, dispatch);
-export const styledComponent = CSSModules(Dashboard, styles, { allowMultiple: true });
+export const styledComponent = CSSModules(DashboardContainer, styles, { allowMultiple: true });
 export default connect(null, mapDispatchToProps)(styledComponent);

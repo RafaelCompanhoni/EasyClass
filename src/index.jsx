@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import reduxThunk from 'redux-thunk';
@@ -8,11 +8,10 @@ import logger from 'redux-logger';
 import 'babel-polyfill';
 import reducers from './reducers';
 import history from './history';
-import Authentication from './components/shared/Authentication';
 import { SIGNED_IN } from './actions/types';
 
 import LoginContainer from './components/Login/LoginContainer';
-import Dashboard from './components/shared/Dashboard';
+import Dashboard from './components/Dashboard/DashboardContainer';
 import UserContainer from './components/User/UserContainer';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk, logger)(createStore);
@@ -32,10 +31,10 @@ ReactDOM.render(
         <Route exact path="/" component={LoginContainer} />
         <Dashboard>
           <Route component={() => (
-            <div>
-              <Route path="/users" component={Authentication(UserContainer)} />
-              <Route path="/other" component={Authentication(UserContainer)} />
-            </div>
+            <Fragment>
+              <Route path="/users" component={UserContainer} />
+              <Route path="/other" component={UserContainer} />
+            </Fragment>
           )}
           />
         </Dashboard>

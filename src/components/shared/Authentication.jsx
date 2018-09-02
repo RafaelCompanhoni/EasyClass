@@ -1,26 +1,18 @@
-import React, { Component } from 'react';
+/* HOC for checking if a component can be rendered based on the auth token existence */
+
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import history from '../../history';
+import { Redirect } from 'react-router-dom';
 
-export default function (ComposedComponent) {
-  class Authentication extends Component {
-    componentWillMount() {
-      if (!this.props.token) {
-        history.push('/');
-      }
+export default (ChildComponent) => {
+  const Authentication = (props) => {
+    if (!props.token) {
+      return <Redirect to="/" />;
     }
 
-    componentWillUpdate(nextProps) {
-      if (!nextProps.token) {
-        history.push('/');
-      }
-    }
-
-    render() {
-      return <ComposedComponent {...this.props} />;
-    }
-  }
+    return <ChildComponent {...props} />;
+  };
 
   Authentication.propTypes = {
     token: PropTypes.string,
@@ -32,4 +24,4 @@ export default function (ComposedComponent) {
 
   const mapStateToProps = ({ authData }) => ({ token: authData.token });
   return connect(mapStateToProps)(Authentication);
-}
+};

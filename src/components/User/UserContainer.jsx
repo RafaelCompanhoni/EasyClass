@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import CSSModules from 'react-css-modules';
+import Authentication from '../shared/Authentication';
 import styles from '../../../styles/custom/User/user-container.sass';
 import { fetchUserList } from '../../actions';
 
@@ -37,4 +38,5 @@ const mapDispatchToProps = dispatch => bindActionCreators({ fetchUserList }, dis
 const mapStateToProps = ({ usersData }) => ({ userList: usersData.users });
 
 export const styledComponent = CSSModules(UserContainer, styles, { allowMultiple: true });
-export default connect(mapStateToProps, mapDispatchToProps)(styledComponent);
+const connectedComponent = connect(mapStateToProps, mapDispatchToProps)(styledComponent);
+export default Authentication(connectedComponent);
