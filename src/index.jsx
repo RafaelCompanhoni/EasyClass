@@ -20,7 +20,7 @@ const store = createStoreWithMiddleware(reducers);
 
 // recovers auth data from local storage if page is reloaded
 const token = localStorage.getItem('token');
-const user = localStorage.getItem('loggedInUser');
+const user = JSON.parse(localStorage.getItem('loggedInUser'));
 if (token && user) {
   store.dispatch({ type: SIGNED_IN, auth: { token, user } });
 }

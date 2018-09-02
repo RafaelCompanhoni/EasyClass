@@ -1,4 +1,7 @@
-import { SIGNED_IN } from '../actions/types';
+import {
+  SIGNED_IN,
+  SIGNED_IN_ERROR,
+} from '../actions/types';
 
 const initialState = {
   auth: {},
@@ -11,6 +14,13 @@ export default (state = initialState, action) => {
         ...state,
         token: action.auth.token,
         loggedInUser: action.auth.user,
+      };
+    }
+
+    case SIGNED_IN_ERROR: {
+      return {
+        ...state,
+        authError: action.authError,
       };
     }
 

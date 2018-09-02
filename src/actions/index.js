@@ -5,28 +5,28 @@ import * as actionTypes from './types';
 const BASE_URL = `${SERVER_URL}/api`;
 
 export function signIn(email, password) {
-  return (dispatch) => {
-    axios
-      .post(`${BASE_URL}/signin`, { email, password })
-      .then((response) => {
-        dispatch({ type: actionTypes.SIGNED_IN, auth: response.data });
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${BASE_URL}/signin`, { email, password });
+      dispatch({ type: actionTypes.SIGNED_IN, auth: response.data });
 
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('loggedInUser', response.data.user);
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('loggedInUser', JSON.stringify(response.data.user));
 
-        history.push('/users');
-      })
-      .catch(() => {});
+      history.push('/users');
+    } catch (error) {
+      dispatch({ type: actionTypes.SIGNED_IN_ERROR, authError: error.response.data });
+    }
   };
 }
 
 export function fetchUserList() {
-  return (dispatch) => {
-    axios
-      .get(`${BASE_URL}/user`)
-      .then((response) => {
-        dispatch({ type: actionTypes.USER_LIST_FETCHED, users: response.data });
-      })
-      .catch(() => {});
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`${BASE_URL}/user`);
+      dispatch({ type: actionTypes.USER_LIST_FETCHED, users: response.data });
+    } catch (error) {
+      dispatch({ type: actionTypes.USER_LIST_FETCHED_ERROR, error });
+    }
   };
 }
