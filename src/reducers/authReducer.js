@@ -5,6 +5,7 @@ import {
 
 const initialState = {
   auth: {},
+  authErrors: null,
 };
 
 export default (state = initialState, action) => {
@@ -20,7 +21,7 @@ export default (state = initialState, action) => {
     case SIGNED_IN_ERROR: {
       return {
         ...state,
-        authError: action.authError,
+        authErrors: action.authErrors,
       };
     }
 

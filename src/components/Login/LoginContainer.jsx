@@ -35,13 +35,17 @@ class LoginContainer extends Component {
   }
 
   render() {
+    const { errors } = this.props;
+
     return (
       <section styleName="hero is-success is-fullheight">
         <div styleName="hero-body">
           <div styleName="container has-text-centered">
             <div styleName="column is-4 is-offset-4">
               <h3 styleName="title has-text-grey">Login</h3>
-              <p id="subtitle-login" styleName="subtitle has-text-grey">Easy Class - Área Adminisrativa</p>
+              <p id="subtitle-login" styleName="subtitle has-text-grey">
+                Easy Class - Área Adminisrativa
+              </p>
 
               <div styleName="box">
                 <figure styleName="avatar">
@@ -53,8 +57,7 @@ class LoginContainer extends Component {
                     <div styleName="control">
                       <input
                         styleName="input is-large"
-                        type="email"
-                        placeholder="Seu Email"
+                        placeholder="Email"
                         autoFocus=""
                         name="email"
                         value={this.state.fields.email}
@@ -68,7 +71,7 @@ class LoginContainer extends Component {
                       <input
                         styleName="input is-large"
                         type="password"
-                        placeholder="Sua Senha"
+                        placeholder="Senha"
                         name="password"
                         value={this.state.fields.password}
                         onChange={this.onInputChange}
@@ -81,6 +84,15 @@ class LoginContainer extends Component {
                   </button>
                 </form>
               </div>
+
+              {errors &&
+                <div styleName="notification is-danger">
+                  <button styleName="delete" />
+                  <ul>
+                    {errors.map(error => <li key={error}>{error}</li>)}
+                  </ul>
+                </div>
+              }
             </div>
           </div>
         </div>
@@ -91,9 +103,20 @@ class LoginContainer extends Component {
 
 LoginContainer.propTypes = {
   signIn: PropTypes.func.isRequired,
+  errors: PropTypes.arrayOf(PropTypes.string),
+};
+
+LoginContainer.defaultProps = {
+  errors: null,
 };
 
 const mapDispatchToProps = dispatch => bindActionCreators({ signIn }, dispatch);
+const mapStateToProps = ({ authData }) => ({ errors: authData.authErrors });
 
-export const styledComponent = CSSModules(LoginContainer, styles, { allowMultiple: true });
-export default connect(null, mapDispatchToProps)(styledComponent);
+export const styledComponent = CSSModules(LoginContainer, styles, {
+  allowMultiple: true,
+});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(styledComponent);

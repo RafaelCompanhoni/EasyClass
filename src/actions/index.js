@@ -4,6 +4,14 @@ import * as actionTypes from './types';
 
 const BASE_URL = `${SERVER_URL}/api`;
 
+function mapErrorsFromResponse(errorResponse) {
+  if (errorResponse && errorResponse.response && errorResponse.response.data && errorResponse.response.data.errors) {
+    return Object.keys(errorResponse.response.data.errors).map(key => errorResponse.response.data.errors[key].msg);
+  }
+
+  return ['Ocorreu um erro'];
+}
+
 export function signIn(email, password) {
   return async (dispatch) => {
     try {
@@ -15,7 +23,7 @@ export function signIn(email, password) {
 
       history.push('/users');
     } catch (error) {
-      dispatch({ type: actionTypes.SIGNED_IN_ERROR, authError: error.response.data });
+      dispatch({ type: actionTypes.SIGNED_IN_ERROR, authErrors: mapErrorsFromResponse(error) });
     }
   };
 }
@@ -23,10 +31,10 @@ export function signIn(email, password) {
 export function fetchUserList() {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${BASE_URL}/user`);
+      const response = await axios.get(`${BASE_URL}/class/5b75a0f97cd87f26e4ad40c3`);
       dispatch({ type: actionTypes.USER_LIST_FETCHED, users: response.data });
     } catch (error) {
-      dispatch({ type: actionTypes.USER_LIST_FETCHED_ERROR, error });
+      dispatch({ type: actionTypes.USER_LIST_FETCHED_ERROR, fetchedUserErrors: mapErrorsFromResponse(error) });
     }
   };
 }
