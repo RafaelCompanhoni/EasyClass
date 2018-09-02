@@ -1,7 +1,8 @@
-/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../../styles/custom/shared/dashboard.sass';
 
 const Dashboard = ({ children }) => (
@@ -13,10 +14,25 @@ const Dashboard = ({ children }) => (
         </a>
 
         <a role="button" styleName="navbar-burger" aria-label="menu" aria-expanded="false">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
+          <span aria-hidden="true" />
+          <span aria-hidden="true" />
+          <span aria-hidden="true" />
         </a>
+      </div>
+
+      <div styleName="navbar-end">
+        <div styleName="navbar-item">
+          <div styleName="field is-grouped">
+            <p styleName="control">
+              <a styleName="button is-primary" href="https://github.com/jgthms/bulma/releases/download/0.7.1/bulma-0.7.1.zip">
+                <span styleName="icon">
+                  <FontAwesomeIcon icon={faSignOutAlt} />
+                </span>
+                <span>Logout</span>
+              </a>
+            </p>
+          </div>
+        </div>
       </div>
     </nav>
 
