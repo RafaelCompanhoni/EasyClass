@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import CSSModules from 'react-css-modules';
 import styles from '../../../styles/custom/Login/login-container.sass';
 import { signIn, clearAuthErrors } from '../../actions/index';
+import logoImg from '../../../assets/login/logo.png';
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -54,7 +55,7 @@ class LoginContainer extends Component {
 
               <div styleName="box">
                 <figure styleName="avatar">
-                  <img alt="avatar" src="https://placehold.it/128x128" />
+                  <img alt="avatar" src={logoImg} />
                 </figure>
 
                 <form onSubmit={this.onFormSubmit}>
