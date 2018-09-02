@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import CSSModules from 'react-css-modules';
 import styles from '../../../styles/custom/Login/login-container.sass';
-import { signIn } from '../../actions/index';
+import { signIn, clearAuthErrors } from '../../actions/index';
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -12,6 +12,7 @@ class LoginContainer extends Component {
 
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
+    this.onClearAuthErrors = this.onClearAuthErrors.bind(this);
 
     this.state = {
       fields: {
@@ -32,6 +33,10 @@ class LoginContainer extends Component {
     const { fields } = this.state;
     fields[evt.target.name] = evt.target.value;
     this.setState({ fields });
+  }
+
+  onClearAuthErrors() {
+    this.props.clearAuthErrors();
   }
 
   render() {
@@ -87,7 +92,10 @@ class LoginContainer extends Component {
 
               {errors &&
                 <div styleName="notification is-danger">
-                  <button styleName="delete" />
+                  <button
+                    styleName="delete"
+                    onClick={this.onClearAuthErrors}
+                  />
                   <ul>
                     {errors.map(error => <li key={error}>{error}</li>)}
                   </ul>
@@ -103,6 +111,7 @@ class LoginContainer extends Component {
 
 LoginContainer.propTypes = {
   signIn: PropTypes.func.isRequired,
+  clearAuthErrors: PropTypes.func.isRequired,
   errors: PropTypes.arrayOf(PropTypes.string),
 };
 
@@ -110,7 +119,7 @@ LoginContainer.defaultProps = {
   errors: null,
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators({ signIn }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ signIn, clearAuthErrors }, dispatch);
 const mapStateToProps = ({ authData }) => ({ errors: authData.authErrors });
 
 export const styledComponent = CSSModules(LoginContainer, styles, {

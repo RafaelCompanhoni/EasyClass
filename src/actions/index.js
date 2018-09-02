@@ -29,11 +29,17 @@ export function signIn(email, password) {
 }
 
 export function signOut() {
-  return async (dispatch) => {
+  return (dispatch) => {
     localStorage.removeItem('token');
     localStorage.removeItem('loggedInUser');
 
     dispatch({ type: actionTypes.SIGNED_OUT });
+  };
+}
+
+export function clearAuthErrors() {
+  return (dispatch) => {
+    dispatch({ type: actionTypes.CLEAR_AUTH_ERRORS });
   };
 }
 
