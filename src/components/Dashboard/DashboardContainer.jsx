@@ -3,20 +3,26 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import CSSModules from 'react-css-modules';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../../styles/custom/Dashboard/dashboard-container.sass';
 import { signOut } from '../../actions';
+
+import NavBar from './NavBar';
+import SideBar from './SideBar';
 
 class DashboardContainer extends Component {
   constructor(props) {
     super(props);
 
     this.onLogout = this.onLogout.bind(this);
+    this.onSectionSelection = this.onSectionSelection.bind(this);
   }
 
   onLogout() {
     this.props.signOut();
+  }
+
+  onSectionSelection(selectedSection) { // eslint-disable-line
+    alert(selectedSection); // eslint-disable-line
   }
 
   render() {
@@ -24,57 +30,16 @@ class DashboardContainer extends Component {
 
     return (
       <Fragment>
-        <nav styleName="navbar is-light" role="navigation" aria-label="main navigation">
-          <div styleName="navbar-brand">
-            <a styleName="navbar-item" href="https://bulma.io">
-              <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28" />
-            </a>
+        <NavBar onLogout={this.onLogout} />
 
-            <a role="button" styleName="navbar-burger" aria-label="menu" aria-expanded="false">
-              <span aria-hidden="true" />
-              <span aria-hidden="true" />
-              <span aria-hidden="true" />
-            </a>
-          </div>
+        <div styleName="columns">
+          <SideBar onSectionSelection={this.onSectionSelection} />
 
-          <div styleName="navbar-end">
-            <div styleName="navbar-item">
-              <div styleName="field is-grouped">
-                <p styleName="control">
-                  <a
-                    styleName="button is-primary"
-                    onClick={this.onLogout}
-                  >
-                    <span styleName="icon">
-                      <FontAwesomeIcon icon={faSignOutAlt} />
-                    </span>
-                    <span>Logout</span>
-                  </a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </nav>
-
-        <div styleName="section">
-          <div styleName="columns">
-            <aside styleName="column is-2">
-              <nav styleName="menu has-background-light">
-                <p styleName="menu-label">Geral</p>
-                <ul styleName="menu-list">
-                  <li><a styleName="is-active">Usuários</a></li>
-                </ul>
-                <p styleName="menu-label">Administração</p>
-                <ul styleName="menu-list">
-                  <li><a>Aprovação de Professores</a></li>
-                </ul>
-              </nav>
-            </aside>
-
-            <main styleName="column">
+          <main styleName="column">
+            <div styleName="section">
               {children}
-            </main>
-          </div>
+            </div>
+          </main>
         </div>
       </Fragment>
     );

@@ -79,7 +79,7 @@ export function stylesLoader() {
           {
             loader: 'sass-resources-loader',
             options: {
-              resources: ['./styles/bulma.sass'], // global imports (so you don't need to import in every specific sass file)
+              resources: ['./styles/bulma.sass', './styles/custom/global.sass'], // global imports (so you don't need to import it in every specific sass file)
             },
           },
           ],
