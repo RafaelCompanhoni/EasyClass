@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import CSSModules from 'react-css-modules';
 import styles from '../../../styles/custom/Dashboard/dashboard-container.sass';
-import { signOut } from '../../actions';
+import { signOut, setSelectedSection } from '../../actions';
 
 import NavBar from './NavBar';
 import SideBar from './SideBar';
@@ -21,19 +21,19 @@ class DashboardContainer extends Component {
     this.props.signOut();
   }
 
-  onSectionSelection(selectedSection) { // eslint-disable-line
-    alert(selectedSection); // eslint-disable-line
+  onSectionSelection(selectedSection) {
+    this.props.setSelectedSection(selectedSection);
   }
 
   render() {
-    const { children } = this.props;
+    const { children, selectedSection } = this.props;
 
     return (
       <Fragment>
         <NavBar onLogout={this.onLogout} />
 
         <div styleName="columns">
-          <SideBar onSectionSelection={this.onSectionSelection} />
+          <SideBar onSectionSelection={this.onSectionSelection} selectedSection={selectedSection} />
 
           <main styleName="column">
             <div styleName="section">
@@ -49,8 +49,16 @@ class DashboardContainer extends Component {
 DashboardContainer.propTypes = {
   children: PropTypes.node.isRequired,
   signOut: PropTypes.func.isRequired,
+  setSelectedSection: PropTypes.func.isRequired,
+  selectedSection: PropTypes.string,
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators({ signOut }, dispatch);
+DashboardContainer.defaultProps = {
+  selectedSection: 'users',
+};
+
+const mapStateToProps = ({ uiData }) => ({ selectedSection: uiData.selectedSection });
+const mapDispatchToProps = dispatch => bindActionCreators({ signOut, setSelectedSection }, dispatch);
+
 export const styledComponent = CSSModules(DashboardContainer, styles, { allowMultiple: true });
-export default connect(null, mapDispatchToProps)(styledComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(styledComponent);

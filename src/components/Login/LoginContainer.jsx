@@ -120,8 +120,8 @@ LoginContainer.defaultProps = {
   errors: null,
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators({ signIn, clearAuthErrors }, dispatch);
 const mapStateToProps = ({ authData }) => ({ errors: authData.authErrors });
+const mapDispatchToProps = dispatch => bindActionCreators({ signIn, clearAuthErrors }, dispatch);
 
 export const styledComponent = CSSModules(LoginContainer, styles, {
   allowMultiple: true,
