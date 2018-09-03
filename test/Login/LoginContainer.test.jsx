@@ -2,12 +2,19 @@ import React from 'react';
 import { styledComponent as LoginContainer } from '../../src/components/Login/LoginContainer';
 
 describe('LoginContainer', () => {
-  test('Usuários logados devem ser redirecionados', () => {
+  test('Exibe painel de erros com a quantidade correta de mensagens de erro', () => {
+    // arrange
+    const errors = ['Mensagem de erro 01', 'Mensagem de erro 02'];
 
-  });
+    // act
+    const wrapper = mount(<LoginContainer signIn={() => {}} clearAuthErrors={() => {}} errors={errors} />);
 
-  test('Exibe mensagem de erro quando credenciais informadas são inválidas', () => {
-    const wrapper = mount(<LoginContainer signIn={() => {}} />);
-    expect(wrapper.find('h3').first().text()).toEqual('Login');
+    // assert error panel exists
+    const errorPanel = wrapper.find('.is-danger');
+    expect(errorPanel.exists()).toEqual(true);
+
+    // asser it displays the provided error list
+    const errorList = wrapper.find('.is-danger ul li');
+    expect(errorList.length).toBe(errors.length);
   });
 });
