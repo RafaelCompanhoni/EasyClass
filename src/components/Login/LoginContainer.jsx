@@ -48,11 +48,26 @@ class LoginContainer extends Component {
         <div styleName="hero-body">
           <div styleName="container has-text-centered">
             <div styleName="column is-4 is-offset-4">
-              <h3 styleName="title has-text-grey">Login</h3>
-              <p id="subtitle-login" styleName="subtitle has-text-grey">
-                Easy Class - Área Adminisrativa
-              </p>
+              {errors &&
+                <div styleName="notification is-danger">
+                  <button
+                    styleName="delete"
+                    onClick={this.onClearAuthErrors}
+                  />
+                  <ul>
+                    {errors.map(error => <li key={error}>{error}</li>)}
+                  </ul>
+                </div>
+                }
 
+              {!errors &&
+                <div>
+                  <h3 styleName="title has-text-grey">Login</h3>
+                  <p id="subtitle-login" styleName="subtitle has-text-grey">
+                    Easy Class - Área Adminisrativa
+                  </p>
+                </div>
+              }
               <div styleName="box">
                 <figure styleName="avatar">
                   <img alt="avatar" src={logoImg} />
@@ -91,17 +106,7 @@ class LoginContainer extends Component {
                 </form>
               </div>
 
-              {errors &&
-                <div styleName="notification is-danger">
-                  <button
-                    styleName="delete"
-                    onClick={this.onClearAuthErrors}
-                  />
-                  <ul>
-                    {errors.map(error => <li key={error}>{error}</li>)}
-                  </ul>
-                </div>
-              }
+
             </div>
           </div>
         </div>
