@@ -9,19 +9,24 @@ import { fetchUserList } from '../../actions';
 
 class UserContainer extends Component {
   componentWillMount() {
+    console.log(usersData);
+    console.log(userList);
     this.props.fetchUserList();
   }
 
   render() {
     const { userList } = this.props;
-
     return (
       <div styleName="container">
         <div styleName="title">Usuários</div>
 
         <table styleName="table">
           <tbody>
-            {userList.map(user => <tr key={user._id}><td>{user.name}</td></tr>)}
+            <tr>
+              <th>Nome Usuário</th>
+              <th>Email Usuário</th>
+            </tr>
+            {userList.map(user => <tr key={user._id}><td>{user.name}</td><td>{user.email}</td></tr>)}
           </tbody>
         </table>
       </div>
