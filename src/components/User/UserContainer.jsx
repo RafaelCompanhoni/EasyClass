@@ -9,8 +9,6 @@ import { fetchUserList } from '../../actions';
 
 class UserContainer extends Component {
   componentWillMount() {
-    console.log(usersData);
-    console.log(userList);
     this.props.fetchUserList();
   }
 
