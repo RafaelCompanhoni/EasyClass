@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Redirect } from 'react-router-dom';
 import CSSModules from 'react-css-modules';
 import styles from '../../../styles/custom/Login/login-container.sass';
 import { signIn, clearAuthErrors } from '../../actions/index';
@@ -41,7 +42,11 @@ class LoginContainer extends Component {
   }
 
   render() {
-    const { errors } = this.props;
+    const { errors, token } = this.props;
+
+    if (token) {
+      return <Redirect to="/users" />;
+    }
 
     return (
       <section styleName="hero is-success is-fullheight">
@@ -119,13 +124,15 @@ LoginContainer.propTypes = {
   signIn: PropTypes.func.isRequired,
   clearAuthErrors: PropTypes.func.isRequired,
   errors: PropTypes.arrayOf(PropTypes.string),
+  token: PropTypes.string,
 };
 
 LoginContainer.defaultProps = {
   errors: null,
+  token: null,
 };
 
-const mapStateToProps = ({ authData }) => ({ errors: authData.authErrors });
+const mapStateToProps = ({ authData }) => ({ errors: authData.authErrors, token: authData.token });
 const mapDispatchToProps = dispatch => bindActionCreators({ signIn, clearAuthErrors }, dispatch);
 
 export const styledComponent = CSSModules(LoginContainer, styles, {

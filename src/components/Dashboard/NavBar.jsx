@@ -18,11 +18,7 @@ class NavBar extends Component {
     const { onLogout } = this.props;
 
     return (
-      <nav
-        styleName="navbar is-dark"
-        role="navigation"
-        aria-label="main navigation"
-      >
+      <nav styleName="navbar is-dark">
         <div styleName="navbar-brand">
           <a styleName="navbar-item" href="https://bulma.io">
             <img
@@ -33,20 +29,17 @@ class NavBar extends Component {
             />
           </a>
 
-          <a
-            role="button"
+          <div
             styleName="navbar-burger"
-            aria-label="menu"
-            aria-expanded="false"
             onClick={() => this.setState({ navBarExpanded: !this.state.navBarExpanded })}
           >
-            <span aria-hidden="true" />
-            <span aria-hidden="true" />
-            <span aria-hidden="true" />
-          </a>
+            <span />
+            <span />
+            <span />
+          </div>
         </div>
 
-        <div className={`navbar-menu ${this.state.navBarExpanded ? 'is-active' : ''}`}>
+        <div styleName={`navbar-menu ${this.state.navBarExpanded ? 'is-active' : ''}`}>
           <div styleName="navbar-end">
             <div styleName="navbar-item">
               <div styleName="field is-grouped">
