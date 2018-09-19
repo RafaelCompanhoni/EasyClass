@@ -21,10 +21,10 @@ class UserContainer extends Component {
         <table styleName="table">
           <tbody>
             <tr>
-              <th>Nome Usuário</th>
-              <th>Email Usuário</th>
+              <th>Nome</th>
+              <th>Email</th>
             </tr>
-            {userList.map(user => <tr key={user._id}><td>{user.name}</td><td>{user.email}</td></tr>)}
+            {userList.map(user => <tr key={user._id}><td>{user.nome}</td><td>{user.email}</td></tr>)}
           </tbody>
         </table>
       </div>

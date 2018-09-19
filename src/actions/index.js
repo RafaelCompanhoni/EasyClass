@@ -49,34 +49,13 @@ export function clearAuthErrors() {
 export function fetchUserList() {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${BASE_URL}/user`);
-      dispatch({ type: actionTypes.USER_LIST_FETCHED, users: response.data });
+      const responseAlunos = await axios.get(`${BASE_URL}/aluno`);
+      const responseProfessores = await axios.get(`${BASE_URL}/professor`);
+      const responseData = [...responseAlunos.data, ...responseProfessores.data];
+
+      dispatch({ type: actionTypes.USER_LIST_FETCHED, users: responseData });
     } catch (error) {
       dispatch({ type: actionTypes.USER_LIST_FETCHED_ERROR, fetchedUsersErrors: mapErrorsFromResponse(error) });
-    }
-  };
-}
-
-/* ALUNO */
-export function fetchAlunoList() {
-  return async (dispatch) => {
-    try {
-      const response = await axios.get(`${BASE_URL}/aluno`);
-      dispatch({ type: actionTypes.ALUNO_LIST_FETCHED, alunos: response.data });
-    } catch (error) {
-      dispatch({ type: actionTypes.ALUNO_LIST_FETCHED_ERROR, fetchedAlunosErrors: mapErrorsFromResponse(error) });
-    }
-  };
-}
-
-/* PROFESSOR */
-export function fetchProfessorList() {
-  return async (dispatch) => {
-    try {
-      const response = await axios.get(`${BASE_URL}/professor`);
-      dispatch({ type: actionTypes.PROFESSOR_LIST_FETCHED, professores: response.data });
-    } catch (error) {
-      dispatch({ type: actionTypes.PROFESSOR_LIST_FETCHED_ERROR, fetchedProfessoresErrors: mapErrorsFromResponse(error) });
     }
   };
 }
