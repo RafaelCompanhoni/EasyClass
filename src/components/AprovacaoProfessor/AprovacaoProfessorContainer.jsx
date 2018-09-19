@@ -22,8 +22,9 @@ class AprovacaoProfessorContainer extends Component {
             <tr>
               <th>Nome do Professor</th>
               <th>Email do Professor</th>
+              <th>Ação</th>
             </tr>
-            {professorList.map(professor => <tr key={professor._id}><td>{professor.nome}</td><td>{professor.email}</td></tr>)}
+            {professorList.map(professor => <tr key={professor._id}><td>{professor.nome}</td><td>{professor.email}</td><td><a className="btn btn-primary">Revisar Cadastro</a></td></tr>)}
           </tbody>
         </table>
       </div>
