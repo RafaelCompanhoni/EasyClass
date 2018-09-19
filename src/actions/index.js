@@ -69,6 +69,17 @@ export function fetchProfessorList() {
   };
 }
 
+export function fetchProfessor(idProfessor) {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`${BASE_URL}/professor/${idProfessor}`);
+      dispatch({ type: actionTypes.PROFESSOR_LIST_FETCHED, professor: response.data[0] });
+    } catch (error) {
+      dispatch({ type: actionTypes.PROFESSOR_LIST_FETCHED_ERROR, fetchedProfessorErrors: mapErrorsFromResponse(error) });
+    }
+  };
+}
+
 /* UI */
 export function setSelectedSection(selectedSection) {
   return (dispatch) => {
