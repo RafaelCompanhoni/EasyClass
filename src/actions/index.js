@@ -57,18 +57,6 @@ export function fetchUserList() {
   };
 }
 
-/* ALUNO */
-export function fetchAlunoList() {
-  return async (dispatch) => {
-    try {
-      const response = await axios.get(`${BASE_URL}/aluno`);
-      dispatch({ type: actionTypes.ALUNO_LIST_FETCHED, alunos: response.data });
-    } catch (error) {
-      dispatch({ type: actionTypes.ALUNO_LIST_FETCHED_ERROR, fetchedAlunosErrors: mapErrorsFromResponse(error) });
-    }
-  };
-}
-
 /* PROFESSOR */
 export function fetchProfessorList() {
   return async (dispatch) => {

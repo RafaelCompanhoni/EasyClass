@@ -22,8 +22,8 @@ const SideBar = ({ onSectionSelection, selectedSection }) => (
         <ul styleName="menu-list">
           <li>
             <a
-              styleName={selectedSection === 'teacher-approval' ? 'is-active' : ''}
-              onClick={() => onSectionSelection('teacher-approval')}
+              styleName={selectedSection === 'aprovacao-professor' ? 'is-active' : ''}
+              onClick={() => onSectionSelection('aprovacao-professor')}
             >
               Aprovação de Professores
             </a>
