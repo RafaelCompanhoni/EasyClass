@@ -17,7 +17,6 @@ class UserContainer extends Component {
     return (
       <div styleName="container">
         <div styleName="title">Usuários</div>
-
         <table styleName="table">
           <tbody>
             <tr>
