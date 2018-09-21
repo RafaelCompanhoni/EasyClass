@@ -13,7 +13,8 @@ class AprovacaoProfessorContainer extends Component {
   }
 
   render() {
-    const { professorList } = this.props;
+    let { professorList } = this.props;
+    professorList = professorList.filter(professor => (!professor.revisado));
     return (
       <div styleName="container">
         <div styleName="title">Aprovação de Professores</div>
