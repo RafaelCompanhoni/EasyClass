@@ -22,7 +22,7 @@ export function signIn(email, password) {
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('loggedInUser', JSON.stringify(response.data.user));
 
-      history.push('/users');
+      history.push('/professores');
     } catch (error) {
       dispatch({ type: actionTypes.SIGNED_IN_ERROR, authErrors: mapErrorsFromResponse(error) });
     }
@@ -56,6 +56,18 @@ export function fetchUserList() {
       dispatch({ type: actionTypes.USER_LIST_FETCHED, users: responseData });
     } catch (error) {
       dispatch({ type: actionTypes.USER_LIST_FETCHED_ERROR, fetchedUsersErrors: mapErrorsFromResponse(error) });
+    }
+  };
+}
+
+/* ALUNO */
+export function fetchAlunoList() {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`${BASE_URL}/aluno`);
+      dispatch({ type: actionTypes.ALUNO_LIST_FETCHED, alunos: response.data });
+    } catch (error) {
+      dispatch({ type: actionTypes.ALUNO_LIST_FETCHED_ERROR, fetchedAlunosErrors: mapErrorsFromResponse(error) });
     }
   };
 }

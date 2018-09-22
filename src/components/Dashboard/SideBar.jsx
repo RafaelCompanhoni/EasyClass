@@ -11,10 +11,18 @@ const SideBar = ({ onSectionSelection, selectedSection }) => (
         <ul styleName="menu-list">
           <li>
             <a
-              styleName={selectedSection === 'users' ? 'is-active' : ''}
-              onClick={() => onSectionSelection('users')}
+              styleName={selectedSection === 'professores' ? 'is-active' : ''}
+              onClick={() => onSectionSelection('professores')}
             >
-              Usuários
+              Professores
+            </a>
+          </li>
+          <li>
+            <a
+              styleName={selectedSection === 'alunos' ? 'is-active' : ''}
+              onClick={() => onSectionSelection('alunos')}
+            >
+              Alunos
             </a>
           </li>
         </ul>

@@ -12,9 +12,10 @@ import { SIGNED_IN } from './actions/types';
 
 import LoginContainer from './components/Login/LoginContainer';
 import Dashboard from './components/Dashboard/DashboardContainer';
-import UserContainer from './components/User/UserContainer';
+import ProfessoresContainer from './components/User/ProfessoresContainer';
 import AprovacaoProfessorContainer from './components/AprovacaoProfessor/AprovacaoProfessorContainer';
 import ProfessorContainer from './components/Professor/ProfessorContainer';
+import AlunosContainer from './components/User/AlunosContainer';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk, logger)(createStore);
 const store = createStoreWithMiddleware(reducers);
@@ -34,7 +35,8 @@ ReactDOM.render(
         <Dashboard>
           <Route component={() => (
             <Fragment>
-              <Route path="/users" component={UserContainer} />
+              <Route path="/professores" component={ProfessoresContainer} />
+              <Route path="/alunos" component={AlunosContainer} />
               <Route path="/aprovacao-professor" component={AprovacaoProfessorContainer} />
               <Route path="/professor" component={ProfessorContainer} />
             </Fragment>

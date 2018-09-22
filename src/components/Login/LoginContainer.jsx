@@ -45,7 +45,7 @@ class LoginContainer extends Component {
     const { errors, token } = this.props;
 
     if (token) {
-      return <Redirect to="/users" />;
+      return <Redirect to="/professores" />;
     }
 
     return (
