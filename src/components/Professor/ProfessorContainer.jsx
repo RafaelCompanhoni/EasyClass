@@ -12,18 +12,39 @@ class ProfessorContainer extends Component {
     this.props.fetchProfessor();
   }
 
+
   render() {
+    const checkboxStyle = {
+      marginLeft: 20,
+      marginRight: 10,
+    };
+
+    function CheckboxRevisado(name) {
+      return (
+        <span>
+          <input type="checkbox" style={checkboxStyle} name={name} />
+          <label id={name} className="checkbox" htmlFor={name}>Revisado</label>
+        </span>
+      );
+    }
+
     return (
       <div styleName="container">
         <div styleName="title">Professor</div>
         <h5>Nome</h5>
+        <input type="text" /> {CheckboxRevisado('nome')}
         <h5>Email</h5>
+        <input type="text" /> {CheckboxRevisado('email')}
         <h5>Endereço</h5>
+        <input type="text" /> {CheckboxRevisado('endereco')}
         <h5>Lattes</h5>
+        <input type="text" /> {CheckboxRevisado('lattes')}
         <h5>Diploma</h5>
+        <input type="text" /> {CheckboxRevisado('diploma')}
         <h5>Biografia</h5>
-        <h5>Nota Média</h5>
+        <input type="text" /> {CheckboxRevisado('biografia')}
         <h5>Data Nascimento</h5>
+        <input type="text" /> {CheckboxRevisado('dataNascimento')}
       </div>
     );
   }
