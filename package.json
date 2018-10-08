@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "rimraf build && webpack --config ./config/webpack.production.babel.js",
-    "start-dev": "webpack-dev-server --config ./config/webpack.development.babel.js --open",
+    "start": "webpack-dev-server --config ./config/webpack.development.babel.js",
     "test": "jest --verbose"
   },
   "jest": {

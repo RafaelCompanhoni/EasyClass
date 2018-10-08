@@ -8,9 +8,9 @@ const developmentConfig = merge([
   parts.sourceMapConfig(),
   parts.setFreeVariablePlugin('SERVER_URL', 'http://localhost:8081'),
   parts.devServerConfig({
-    host: process.env.HOST,
+    host: '0.0.0.0',
     port: 3000,
-  }),
+  })
 ]);
 
 export default developmentConfig;
