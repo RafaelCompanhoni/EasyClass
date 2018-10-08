@@ -1,4 +1,4 @@
-# specify an 'alpine' node base image
+# specify Docker base image
 FROM bayesimpact/react-base
 
 # the folder application within the container (prevents conflicts with OS folders)
@@ -14,4 +14,6 @@ COPY . .
 # startup command
 RUN npm install
 CMD ["npm", "start"]
+
+# open container port
 EXPOSE 3000

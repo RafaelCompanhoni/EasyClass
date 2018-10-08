@@ -131,8 +131,8 @@ export function devServerConfig({ host, port, proxy } = {}) {
       // enables hot reload when using Docker for development
       watchOptions: {
         aggregateTimeout: 300,
-        poll: 1000
-      }
+        poll: 1000,
+      },
     },
   };
 }
