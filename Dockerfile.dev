@@ -2,17 +2,16 @@
 FROM bayesimpact/react-base
 
 # the folder application within the container (prevents conflicts with OS folders)
-WORKDIR  '/usr/app'
+WORKDIR  /usr/src/app
 
 # install dependencies (copies 'from folder' --> 'destination folder')
-COPY package.json .
+COPY package.json /usr/src/app
 RUN npm install
 
 # copy application files (moved here to make use of Docker's cache machanism)
-COPY . .
+COPY . /usr/src/app
 
 # startup command
-RUN npm install
 CMD ["npm", "start"]
 
 # open container port

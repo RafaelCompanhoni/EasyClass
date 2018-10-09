@@ -69,7 +69,7 @@ class LoginContainer extends Component {
                 <div>
                   <h3 styleName="title has-text-grey">Login</h3>
                   <p id="subtitle-login" styleName="subtitle has-text-grey">
-                    Easy Class - Área Adminisrativa
+                    Easy Class - Área Administrativa
                   </p>
                 </div>
               }

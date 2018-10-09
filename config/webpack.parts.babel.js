@@ -115,6 +115,7 @@ export function devServerConfig({ host, port, proxy } = {}) {
       host,
       port,
       proxy,
+
       stats: {
         assets: false,
         modules: false,
@@ -122,11 +123,19 @@ export function devServerConfig({ host, port, proxy } = {}) {
         timings: false,
         version: false,
       },
+
       overlay: {
         errors: true,
         warnings: true,
       },
+
       historyApiFallback: true,
+
+      // needed for webpack + docker: after the initial build, webpack will continue to watch for changes in any of the resolved files
+      watchOptions: {
+        aggregateTimeout: 300,
+        poll: 1000
+      }
     },
   };
 }
