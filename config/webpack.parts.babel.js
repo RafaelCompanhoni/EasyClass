@@ -134,8 +134,8 @@ export function devServerConfig({ host, port, proxy } = {}) {
       // needed for webpack + docker: after the initial build, webpack will continue to watch for changes in any of the resolved files
       watchOptions: {
         aggregateTimeout: 300,
-        poll: 1000
-      }
+        poll: 1000,
+      },
     },
   };
 }
