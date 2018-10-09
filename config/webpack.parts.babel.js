@@ -127,12 +127,6 @@ export function devServerConfig({ host, port, proxy } = {}) {
         warnings: true,
       },
       historyApiFallback: true,
-
-      // enables hot reload when using Docker for development
-      watchOptions: {
-        aggregateTimeout: 300,
-        poll: 1000,
-      },
     },
   };
 }
