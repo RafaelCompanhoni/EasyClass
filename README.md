@@ -25,3 +25,15 @@ Cliente Web para a área administrativa do projeto Easy Class
 ````
 # npm run build
 ````
+
+---
+
+## Como rodar a aplicação com Docker
+
+**Pré-requisitos: Docker** 
+
+1. Executar o seguinte comando (em modo de desenvolvimento):
+
+````
+  # docker-compose up
+````
