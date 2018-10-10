@@ -38,14 +38,21 @@ Para executar os testes:
 
 **Pré-requisitos: Docker, (no Windows, habilitar Hyper-V)** 
 
-1. Cria imagem e gera container para desenvolvimento:
+Cria imagem e executa container para desenvolvimento:
 
 ````
   # docker-compose up app
 ````
 
-Cria imagem e gera container para testes:
+Cria imagem, gera container para testes e executa os testes:
 
 ````
   # docker-compose run test
+````
+
+Faz o build do projeto com webpack e gera container Nginx para servir o resultado:
+
+````
+  # docker build -t my-prod-image .
+  # docker run --name my-prod -p 8080:80 container my-prod-image
 ````
