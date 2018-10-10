@@ -26,14 +26,26 @@ Cliente Web para a área administrativa do projeto Easy Class
 # npm run build
 ````
 
+Para executar os testes:
+
+````
+# npm test
+````
+
 ---
 
 ## Como rodar a aplicação com Docker
 
-**Pré-requisitos: Docker** 
+**Pré-requisitos: Docker, (no Windows, habilitar Hyper-V)** 
 
-1. Executar o seguinte comando (em modo de desenvolvimento):
+1. Cria imagem e gera container para desenvolvimento:
 
 ````
-  # docker-compose up
+  # docker-compose up app
+````
+
+Cria imagem e gera container para testes:
+
+````
+  # docker-compose run test
 ````

@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rimraf build && webpack --config ./config/webpack.production.babel.js",
     "start": "webpack-dev-server --config ./config/webpack.development.babel.js",
-    "test": "jest --verbose"
+    "test": "jest --verbose --watchAll"
   },
   "jest": {
     "globals": {
