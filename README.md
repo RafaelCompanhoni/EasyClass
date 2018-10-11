@@ -53,6 +53,8 @@ Cria imagem, gera container para testes e executa os testes:
 Faz o build do projeto com webpack e gera container Nginx para servir o resultado:
 
 ````
-  # docker build -t my-prod-image .
-  # docker run --name my-prod -p 8080:80 container my-prod-image
+  # docker build -t ec-prod-image .
+  # docker run --name ec-prod-container -p 8080:80 ec-prod-image
 ````
+
+Após estes comandos a aplicação estará disponível em **localhost:8080**
