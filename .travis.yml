@@ -4,6 +4,7 @@ services:
 
 before_install:
   - docker build -t ec-dev-image -f Dockerfile.dev .
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
 script:
   - docker run ec-dev-image npm run test-ci
