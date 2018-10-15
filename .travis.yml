@@ -1,12 +1,5 @@
 sudo: required
 
-addons:
-  apt:
-    sources:
-      - heroku
-    packages:
-      - heroku-toolbelt
-
 services:
   - docker
 
@@ -17,6 +10,7 @@ script:
   - docker run rafaelcompanhoni/ec-dev-image npm run test-ci
 
 after_script:
+  - wget -qO- https://toolbelt.heroku.com/install.sh | sh
   - heroku container:push web -a ec-easy-class
 
 deploy:
