@@ -15,11 +15,12 @@ before_install:
 
 script:
   - docker run rafaelcompanhoni/ec-dev-image npm run test-ci
+
+after_script:
   - heroku container:push web -a ec-easy-class
 
 deploy:
   provider: script
-  script:
-    - heroku container:release web -a ec-easy-class
+  script: heroku container:release web -a ec-easy-class
   on:
     branch: master
