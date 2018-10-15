@@ -1,5 +1,4 @@
 sudo: required
-sudo: required
 language: node_js
 node_js:
   - "9"
@@ -9,8 +8,8 @@ services:
 
 before_install:
   - wget -qO- https://toolbelt.heroku.com/install.sh | sh
-  - echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  # - echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
 
 install:
   - npm install
@@ -18,11 +17,11 @@ install:
 script:
   - npm run test-ci
   - docker build -t rafaelcompanhoni/$HEROKU_APP_NAME .
-  - docker tag rafaelcompanhoni/$HEROKU_APP_NAME registry.heroku.com/$HEROKU_APP_NAME/web
+  # - docker tag rafaelcompanhoni/$HEROKU_APP_NAME registry.heroku.com/$HEROKU_APP_NAME/web
 
 deploy:
   provider: script
   script:
     - docker push rafaelcompanhoni/$HEROKU_APP_NAME
-    - docker push registry.heroku.com/$HEROKU_APP_NAME/web
-    - heroku container:release web --app $HEROKU_APP_NAME
+    # - docker push registry.heroku.com/$HEROKU_APP_NAME/web
+    # - heroku container:release web --app $HEROKU_APP_NAME
