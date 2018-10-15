@@ -5,15 +5,13 @@ services:
 
 before_install:
   - wget -qO- https://toolbelt.heroku.com/install.sh | sh
-  - docker build -t rafaelcompanhoni/ec-dev-image -f Dockerfile.dev .
+  # - docker build -t rafaelcompanhoni/ec-dev-image -f Dockerfile.dev .
 
 script:
-  - docker run rafaelcompanhoni/ec-dev-image npm run test-ci
+  # - docker run rafaelcompanhoni/ec-dev-image npm run test-ci
 
 deploy:
   provider: heroku
   script: heroku container:push web -a ec-easy-class
   api_key: d1d183ac-30f5-4c55-85b2-b25316c680b9
   app: ec-easy-class
-  on:
-    branch: master
