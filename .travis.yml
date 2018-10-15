@@ -5,13 +5,20 @@ services:
 
 before_install:
   - wget -qO- https://toolbelt.heroku.com/install.sh | sh
-  # - docker build -t rafaelcompanhoni/ec-dev-image -f Dockerfile.dev .
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
+
+install:
+  - npm install
 
 script:
-  # - docker run rafaelcompanhoni/ec-dev-image npm run test-ci
+  - npm run test-ci
+  - docker build -t rafaelcompanhoni/$HEROKU_APP_NAME .
+  - docker tag rafaelcompanhoni/$HEROKU_APP_NAME registry.heroku.com/$HEROKU_APP_NAME/web
 
 deploy:
-  provider: heroku
-  script: heroku container:push web -a ec-easy-class
-  api_key: d1d183ac-30f5-4c55-85b2-b25316c680b9
-  app: ec-easy-class
+  provider: script
+  script:
+    - docker push rafaelcompanhoni/$HEROKU_APP_NAME
+    - docker push registry.heroku.com/$HEROKU_APP_NAME/web
+    - heroku container:release web --app $HEROKU_APP_NAME
