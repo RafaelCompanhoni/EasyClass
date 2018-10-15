@@ -3,15 +3,15 @@ services:
   - docker
 
 before_install:
-  - docker build -t rafaelcompanhoni/ec-dev-image -f Dockerfile.dev .
   - wget -qO- https://toolbelt.heroku.com/install.sh | sh
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t rafaelcompanhoni/ec-dev-image -f Dockerfile.dev .
 
 script:
   - docker run rafaelcompanhoni/ec-dev-image npm run test-ci
 
 deploy:
   provider: script
-  script: docker push rafaelcompanhoni/ec-dev-image
+  script:
+    - docker push rafaelcompanhoni/ec-dev-image
   on:
     branch: master
