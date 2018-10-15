@@ -14,5 +14,6 @@ deploy:
   provider: heroku
   script: heroku container:push web -a ec-easy-class
   api_key: d1d183ac-30f5-4c55-85b2-b25316c680b9
+  app: ec-easy-class
   on:
     branch: master
