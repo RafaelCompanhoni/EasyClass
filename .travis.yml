@@ -15,14 +15,5 @@ install:
 
 script:
   - npm run test-ci
-  - docker build -t ages/es-easy-class .
-
-deploy:
-  provider: heroku
-  app: 'es-easy-class'
-  api_key:
-    secure: "57a1804e-31f0-473c-a932-3fd708fd07e0"
-  script:
-    docker tag ages/es-easy-class registry.heroku.com/es-easy-class/web;
-    docker push registry.heroku.com/es-easy-class/web;
-    heroku container:release web --app es-easy-class
+  - heroku container:push web --app es-easy-class
+  - heroku container:release web --app es-easy-class
