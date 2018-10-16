@@ -16,7 +16,7 @@ install:
 
 script:
   - npm run test-ci
-  # - docker build -t es-easy-class .
+  - docker build -t es-easy-class .
   # - docker build -t rafaelcompanhoni/"$HEROKU_APP_NAME" .
   # - docker tag rafaelcompanhoni/"$HEROKU_APP_NAME" registry.heroku.com/"$HEROKU_APP_NAME"/web
 
