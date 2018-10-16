@@ -16,12 +16,12 @@ install:
 
 script:
   - npm run test-ci
-  - docker build -t rafaelcompanhoni/$HEROKU_APP_NAME .
-  - docker tag rafaelcompanhoni/$HEROKU_APP_NAME registry.heroku.com/$HEROKU_APP_NAME/web
+  - docker build -t rafaelcompanhoni/"$HEROKU_APP_NAME" .
+  - docker tag rafaelcompanhoni/"$HEROKU_APP_NAME" registry.heroku.com/"$HEROKU_APP_NAME"/web
 
 deploy:
   provider: script
   script:
-    - docker push rafaelcompanhoni/$HEROKU_APP_NAME
-    - docker push registry.heroku.com/$HEROKU_APP_NAME/web
-    - heroku container:release web --app $HEROKU_APP_NAME
+    - docker push rafaelcompanhoni/"$HEROKU_APP_NAME"
+    - docker push registry.heroku.com/"$HEROKU_APP_NAME"/web
+    - heroku container:release web --app "$HEROKU_APP_NAME"
