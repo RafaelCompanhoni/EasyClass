@@ -22,7 +22,7 @@ script:
 
 deploy:
   provider: heroku
-  app: 'es-easy-class'
+  app: "$HEROKU_APP_NAME"
   api_key:
     secure: "$HEROKU_KEY"
   script:
