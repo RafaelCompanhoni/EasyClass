@@ -8,7 +8,7 @@ services:
 
 before_install:
   - wget -qO- https://toolbelt.heroku.com/install.sh | sh
-  - echo "57a1804e-31f0-473c-a932-3fd708fd07e0" | docker login -u "companhoni@gmail.com" --password-stdin registry.heroku.com
+  - echo "$HEROKU_KEY" | docker login -u "companhoni@gmail.com" --password-stdin registry.heroku.com
 
 install:
   - npm install
@@ -21,7 +21,7 @@ deploy:
   provider: heroku
   app: 'es-easy-class'
   api_key:
-    secure: "57a1804e-31f0-473c-a932-3fd708fd07e0"
+    secure: "$HEROKU_KEY"
   script:
     docker tag ages/es-easy-class registry.heroku.com/es-easy-class/web;
     docker push registry.heroku.com/es-easy-class/web;
