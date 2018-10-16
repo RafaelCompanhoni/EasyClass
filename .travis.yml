@@ -20,10 +20,9 @@ script:
   - docker tag rafaelcompanhoni/"$HEROKU_APP_NAME" registry.heroku.com/"$HEROKU_APP_NAME"/web
 
 deploy:
-  provider: script
+  provider: heroku
+  api_key:
+    secure: "76b2beb1-7375-41cb-9eb1-c38f24fa6217"
   script:
-    docker push rafaelcompanhoni/"$HEROKU_APP_NAME";
-    docker push registry.heroku.com/"$HEROKU_APP_NAME"/web;
-    heroku container:release web --app "$HEROKU_APP_NAME"
-  on:
-    branch: master
+    heroku container:push web --app es-easy-class;
+    heroku container:release web --app es-easy-class
