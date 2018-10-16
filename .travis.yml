@@ -16,6 +16,8 @@ install:
 
 script:
   - npm run test-ci
+  - docker build -t ages/es-easy-class .
+  - docker tag ages/es-easy-class registry.heroku.com/es-easy-class/web
   - docker push registry.heroku.com/es-easy-class/web
 
 deploy:
