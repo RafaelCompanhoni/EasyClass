@@ -23,9 +23,10 @@ RUN npm run build
 FROM nginx:1.15.5
 
 # use custom Nginx configurations
+COPY default.conf.template /etc/nginx/conf.d/default.conf.template
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# copy build results from build phase to Nginx server
+# copy build results to Nginx server
 COPY --from=builder /usr/src/app/build /usr/share/nginx/html
 
 # needed for Heroku
