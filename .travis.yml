@@ -6,19 +6,11 @@ node_js:
 services:
   - docker
 
-before_install:
-  # - wget -qO- https://toolbelt.heroku.com/install.sh | sh
-  # - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  # - echo "57a1804e-31f0-473c-a932-3fd708fd07e0" | docker login -u "companhoni@gmail.com" --password-stdin registry.heroku.com
-
 install:
   - npm install
 
 script:
   - npm run test-ci
-  # - docker build -t es-easy-class/web .
-  # - docker build -t rafaelcompanhoni/"$HEROKU_APP_NAME" .
-  # - docker tag rafaelcompanhoni/"$HEROKU_APP_NAME" registry.heroku.com/"$HEROKU_APP_NAME"/web
 
 deploy:
   provider: heroku
