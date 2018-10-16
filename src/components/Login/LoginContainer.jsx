@@ -67,7 +67,7 @@ class LoginContainer extends Component {
 
               {!errors &&
                 <div>
-                  <h3 styleName="title has-text-grey">Login 789</h3>
+                  <h3 styleName="title has-text-grey">Login</h3>
                   <p id="subtitle-login" styleName="subtitle has-text-grey">
                     Easy Class - Área Administrativa
                   </p>
