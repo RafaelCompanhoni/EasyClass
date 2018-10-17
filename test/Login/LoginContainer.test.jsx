@@ -10,7 +10,7 @@ describe('LoginContainer', () => {
     const wrapper = mount(<LoginContainer signIn={() => {}} clearAuthErrors={() => {}} errors={errors} />);
 
     // assert error panel exists
-    const errorPanel = wrapper.find('.is-danger-123');
+    const errorPanel = wrapper.find('.is-danger');
     expect(errorPanel.exists()).toEqual(true);
 
     // asser it displays the provided error list
